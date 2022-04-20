@@ -1,0 +1,107 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.3'
+        classpath 'com.google.gms:google-services:4.3.10'
+    }
+}
+
+
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}
+
+
+
+// The sample build uses multiple directories to
+// keep boilerplate and common code separate from
+// the main sample code.
+
+
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 32
+    defaultConfig {
+        applicationId "com.example.android.camera2basic"
+        minSdkVersion 25
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    dependencies {
+        implementation 'androidx.appcompat:appcompat:1.4.1'
+        implementation 'com.google.android.material:material:1.5.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+        testImplementation 'junit:junit:4.13.2'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+       implementation 'org.tensorflow:tensorflow-android:1.13.1'
+        //noinspection GradleCompatible
+        implementation "com.android.support:support-v4:25.0.1"
+        //noinspection GradleCompatible
+        implementation "com.android.support:support-v13:25.0.1"
+        //noinspection GradleCompatible
+        implementation "com.android.support:cardview-v7:25.0.1"
+        implementation 'com.budiyev.android:code-scanner:2.1.0'
+        implementation 'com.google.android.gms:play-services-vision:20.1.3'
+        implementation 'com.itextpdf:itextg:5.5.10'
+        implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+        //noinspection GradleCompatible
+        implementation 'com.android.support:design:28.0.0'
+        implementation 'com.itextpdf:itextg:5.5.10'
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'com.android.support.test:runner:1.0.2'
+        androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+        // barcode reader
+        implementation 'info.androidhive:barcode-reader:1.1.5'
+        implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+        implementation 'com.karumi:dexter:6.2.2'
+        implementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
+        implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+        implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
+
+    }
+
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+     implementation 'com.budiyev.android:code-scanner:2.1.0'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    implementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
+    // barcode reader
+    implementation 'com.itextpdf:itextg:5.5.10'
+    implementation 'info.androidhive:barcode-reader:1.1.5'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'com.karumi:dexter:6.2.2'
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
+}

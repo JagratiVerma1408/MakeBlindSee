@@ -26,19 +26,19 @@
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
 
-         <Button
+         <CheckBox
              android:layout_width="wrap_content"
              android:id="@+id/text_to_speech"
              android:text="Stop Text To Speech"
              android:layout_marginTop="50dp"
              android:textSize="18dp"
              android:buttonTint="#FDD835"
-             android:textColor="#FFFF"
+             android:textColor="#FDD835"
              android:backgroundTint="@color/black"
              android:layout_gravity="center_horizontal"
              android:layout_height="wrap_content">
 
-         </Button>
+         </CheckBox>
     </FrameLayout>
 
 </RelativeLayout>

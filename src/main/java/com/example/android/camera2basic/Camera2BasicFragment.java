@@ -84,7 +84,7 @@ public class Camera2BasicFragment extends Fragment
     private static final int IMAGE_SIZE = 224;
     private static final int IMAGE_CHANNELS = 3;
     public static  TextToSpeech textToSpeech;
-    public Button btn;
+    public CheckBox btn;
 
 
     private static final int[] DIM_IMAGE=new int[]{1, IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS};
@@ -835,6 +835,7 @@ public class Camera2BasicFragment extends Fragment
         setHasOptionsMenu(true);
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
         btn=view.findViewById(R.id.text_to_speech);
+        btn.setChecked(true);
 
     }
 
@@ -926,7 +927,8 @@ public class Camera2BasicFragment extends Fragment
                     @Override
                     public void run() {
                         textView.setText(text);
-                        textToSpeech = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+                        if (btn.isChecked()) {
+                            textToSpeech = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
 
                                 // THIS RUNS THIRD!
                                 @Override
@@ -934,29 +936,22 @@ public class Camera2BasicFragment extends Fragment
                                     if (i == TextToSpeech.SUCCESS) {
                                         textToSpeech.setSpeechRate(2f);
                                         textToSpeech.setLanguage(Locale.ENGLISH);
-                                            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                                        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
 
                                     }
 
                                 }
                             });
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                textToSpeech.stop();
-                                textToSpeech.shutdown();
-                            }
-                        });
+                        }
+                       else
+                        {
+                            textToSpeech.stop();
+                            textToSpeech.shutdown();
+                        }
 
                     }
                 });
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        textToSpeech.stop();
-                        textToSpeech.shutdown();
-                    }
-                });
+
 
                 long costTime = SystemClock.currentThreadTimeMillis() - startTime;
                 Log.i("onImageAvailable", "onImageAvailable end, cost time=" + costTime + "ms");
@@ -980,7 +975,7 @@ public class Camera2BasicFragment extends Fragment
         switch (item.getItemId()) {
 
             case R.id.b:
-                textToSpeech.speak("", TextToSpeech.QUEUE_FLUSH, null, null);
+
                 Intent intent = new Intent(getActivity(),MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                 startActivity(intent);
@@ -988,7 +983,7 @@ public class Camera2BasicFragment extends Fragment
 
                 return true;
             case R.id.c:
-                textToSpeech.speak("", TextToSpeech.QUEUE_FLUSH, null, null);
+
                 Intent i = new Intent(getActivity(),Classifier.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                 startActivity(i);
@@ -997,7 +992,6 @@ public class Camera2BasicFragment extends Fragment
                 // Not implemented here
                 return true;
             case R.id.d:
-                textToSpeech.speak("", TextToSpeech.QUEUE_FLUSH, null, null);
                 Intent in = new Intent(getActivity(),Docs.class);
                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                 startActivity(in);
